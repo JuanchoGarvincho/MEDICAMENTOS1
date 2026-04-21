@@ -1,0 +1,1146 @@
+/* CSS Variables */
+:root {
+    --primary: #2563eb;
+    --primary-foreground: #ffffff;
+    --secondary: #f1f5f9;
+    --secondary-foreground: #0f172a;
+    --muted: #f8fafc;
+    --muted-foreground: #64748b;
+    --background: #ffffff;
+    --foreground: #0f172a;
+    --card: #ffffff;
+    --card-foreground: #0f172a;
+    --border: #e2e8f0;
+    --input-background: #ffffff;
+    --destructive: #dc2626;
+    --destructive-foreground: #ffffff;
+    --success: #16a34a;
+    --warning: #ca8a04;
+    --info: #0ea5e9;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, var(--background) 50%, rgba(14, 165, 233, 0.05) 100%);
+    color: var(--foreground);
+    line-height: 1.5;
+}
+
+.app {
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    border-bottom: 1px solid var(--border);
+    background: var(--card);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.logo svg {
+    width: 2rem;
+    height: 2rem;
+    color: var(--primary);
+}
+
+.header-left h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+#user-greeting {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    background: var(--background);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-icon:hover {
+    background: var(--secondary);
+}
+
+.notification-badge {
+    position: absolute;
+    top: -0.25rem;
+    right: -0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: var(--destructive);
+    color: var(--destructive-foreground);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    background: var(--background);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-logout:hover {
+    background: var(--secondary);
+}
+
+.btn-logout span {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .btn-logout span {
+        display: inline;
+    }
+}
+
+/* Notifications Panel */
+.notifications-container {
+    position: relative;
+}
+
+.notifications-panel {
+    position: absolute;
+    right: 0;
+    top: 3rem;
+    width: 20rem;
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+}
+
+.notifications-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.notifications-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.mark-read-btn {
+    font-size: 0.875rem;
+    color: var(--primary);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.mark-read-btn:hover {
+    text-decoration: underline;
+}
+
+.notifications-list {
+    max-height: 24rem;
+    overflow-y: auto;
+}
+
+.notification-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.notification-item.unread {
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.notification-item:hover {
+    background: var(--secondary);
+}
+
+.notification-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.notification-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.notification-icon.restock {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary);
+}
+
+.notification-icon.reservation {
+    background: var(--secondary);
+    color: var(--foreground);
+}
+
+.notification-text {
+    flex: 1;
+}
+
+.notification-text p {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.notification-date {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+}
+
+/* Main */
+.main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 2rem;
+    padding: 0.25rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tab {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+    border: none;
+    color: var(--muted-foreground);
+}
+
+.tab:hover {
+    color: var(--foreground);
+    background: var(--secondary);
+}
+
+.tab.active {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tab svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.tab span {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .tab span {
+        display: inline;
+    }
+}
+
+.tab-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Search */
+.search-container {
+    margin-bottom: 2rem;
+}
+
+.search-input-container {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted-foreground);
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    outline: none;
+    transition: all 0.2s;
+    font-size: 1rem;
+}
+
+.search-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Grid Container */
+.grid-container {
+    display: grid;
+    gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Sections */
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.section-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.results-count {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.subtitle {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    margin-top: 0.25rem;
+}
+
+/* Medications List */
+.medications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.medication-item {
+    position: relative;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.medication-item.selected {
+    border-color: var(--primary);
+    background: rgba(37, 99, 235, 0.05);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.medication-item.unavailable {
+    opacity: 0.6;
+}
+
+.medication-item:hover {
+    border-color: rgba(37, 99, 235, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.medication-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.medication-info {
+    flex: 1;
+}
+
+.medication-name {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.check-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--primary);
+}
+
+.medication-generic {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.medication-details {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.875rem;
+}
+
+.category-tag {
+    padding: 0.25rem 0.75rem;
+    background: var(--secondary);
+    border-radius: 9999px;
+}
+
+.stock-info {
+    color: var(--muted-foreground);
+}
+
+.unavailable-info {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--destructive);
+}
+
+.favorite-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.favorite-btn:hover {
+    background: var(--secondary);
+}
+
+.favorite-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--muted-foreground);
+}
+
+.favorite-icon.favorited {
+    color: var(--destructive);
+    fill: var(--destructive);
+}
+
+/* Pharmacies */
+.pharmacies-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 16rem;
+    padding: 2rem;
+    border: 1px dashed var(--border);
+    background: var(--card);
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.empty-state svg {
+    width: 3rem;
+    height: 3rem;
+    color: var(--muted-foreground);
+    margin-bottom: 0.75rem;
+}
+
+.empty-state p {
+    color: var(--muted-foreground);
+    margin-bottom: 1rem;
+}
+
+.empty-state .btn-primary {
+    padding: 0.75rem 1.5rem;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.empty-state .btn-primary:hover {
+    background: rgba(37, 99, 235, 0.9);
+}
+
+.pharmacy-item {
+    padding: 1rem;
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.pharmacy-item.available:hover {
+    border-color: rgba(37, 99, 235, 0.5);
+    background: rgba(37, 99, 235, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.pharmacy-item.unavailable {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pharmacy-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.pharmacy-info {
+    flex: 1;
+}
+
+.pharmacy-name {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.pharmacy-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.pharmacy-address {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pharmacy-hours {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pharmacy-distance {
+    color: var(--muted-foreground);
+}
+
+.pharmacy-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.pharmacy-status.available {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary);
+}
+
+.pharmacy-status.unavailable {
+    background: rgba(220, 38, 38, 0.1);
+    color: var(--destructive);
+}
+
+/* Reservations */
+.reservations-content {
+    display: grid;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .reservations-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.reservation-item {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-image {
+    width: 100%;
+    height: 10rem;
+    object-fit: cover;
+}
+
+.reservation-header {
+    position: relative;
+}
+
+.cancel-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background: var(--card);
+    color: var(--destructive);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s;
+}
+
+.cancel-btn:hover {
+    background: var(--destructive);
+    color: var(--destructive-foreground);
+}
+
+.reservation-body {
+    padding: 1rem;
+}
+
+.reservation-med-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.reservation-med-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary);
+}
+
+.reservation-med-details h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.reservation-med-details p {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.reservation-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.reservation-address {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.reservation-address svg {
+    margin-top: 0.125rem;
+    width: 1rem;
+    height: 1rem;
+    color: var(--muted-foreground);
+}
+
+.reservation-date {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted-foreground);
+}
+
+.reservation-validity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted-foreground);
+}
+
+.reservation-note {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: rgba(37, 99, 235, 0.05);
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+/* History */
+.history-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.history-item {
+    padding: 1rem;
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.history-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.history-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.history-icon.completed {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary);
+}
+
+.history-icon.cancelled {
+    background: var(--muted);
+    color: var(--muted-foreground);
+}
+
+.history-info {
+    flex: 1;
+}
+
+.history-info h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.history-info p {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    margin-bottom: 0.5rem;
+}
+
+.history-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.history-status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.history-status.completed {
+    background: rgba(22, 163, 74, 0.1);
+    color: var(--success);
+}
+
+.history-status.cancelled {
+    background: var(--muted);
+    color: var(--muted-foreground);
+}
+
+/* Modals */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 40;
+}
+
+.modal {
+    width: 100%;
+    max-width: 28rem;
+    margin: 1rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+}
+
+.modal h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.medication-info,
+.pharmacy-info,
+.reservation-note {
+    padding: 1rem;
+    background: var(--secondary);
+    border-radius: 0.5rem;
+}
+
+.label {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    margin-bottom: 0.25rem;
+}
+
+.med-name {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.med-details {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.pharmacy-image {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.pharmacy-name {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.pharmacy-address {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.reservation-note p {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.form-input {
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    background: var(--input-background);
+    border-radius: 0.5rem;
+    outline: none;
+    transition: all 0.2s;
+    font-size: 1rem;
+}
+
+.form-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.favorites-info {
+    padding: 1rem;
+    background: var(--secondary);
+    border-radius: 0.5rem;
+}
+
+.favorites-info h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.favorites-info h3 svg {
+    width: 1rem;
+    height: 1rem;
+    color: var(--destructive);
+    fill: var(--destructive);
+}
+
+#favorites-count {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    margin-bottom: 0.25rem;
+}
+
+.favorites-note {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn-secondary,
+.btn-primary {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid var(--border);
+}
+
+.btn-secondary {
+    background: var(--background);
+    color: var(--foreground);
+}
+
+.btn-secondary:hover {
+    background: var(--secondary);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border-color: var(--primary);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    background: rgba(37, 99, 235, 0.9);
+}
+
+/* Toast */
+.toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.toast {
+    padding: 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 20rem;
+    animation: slideIn 0.3s ease-out;
+}
+
+.toast.success {
+    border-color: var(--success);
+    background: rgba(22, 163, 74, 0.05);
+}
+
+.toast.error {
+    border-color: var(--destructive);
+    background: rgba(220, 38, 38, 0.05);
+}
+
+.toast.info {
+    border-color: var(--info);
+    background: rgba(14, 165, 233, 0.05);
+}
+
+.toast-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.toast-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+}
+
+.toast.success .toast-icon {
+    color: var(--success);
+}
+
+.toast.error .toast-icon {
+    color: var(--destructive);
+}
+
+.toast.info .toast-icon {
+    color: var(--info);
+}
+
+.toast-text {
+    flex: 1;
+    font-size: 0.875rem;
+}
+
+.toast-title {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.toast-description {
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Hidden utility */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .header-content {
+        padding: 0.75rem;
+    }
+
+    .main {
+        padding: 0.75rem;
+    }
+
+    .modal {
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+}
