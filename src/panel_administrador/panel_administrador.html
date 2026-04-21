@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Medicamentos</title>
+    <link rel="stylesheet" href="panel_administrador.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <div class="logo">
+                        <!-- Icon removed -->
+                    </div>
+                    <div>
+                        <h1>Panel de Administración</h1>
+                        <p id="user-greeting">Bienvenido, Administrador</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="btn-logout" id="logoutBtn">
+                        <span>Cerrar sesión</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main -->
+        <main class="main">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" data-tab="medications">
+                    <span>Medicamentos</span>
+                </button>
+                <button class="tab" data-tab="pharmacies">
+                    <span>Centros de Dispensación</span>
+                </button>
+            </div>
+
+            <!-- Medications Tab -->
+            <div id="medications-tab" class="tab-content active">
+                <div class="section-header">
+                    <h2>Gestión de Medicamentos</h2>
+                    <button class="btn btn-primary" id="addMedicationBtn">
+                        Agregar medicamento
+                    </button>
+                </div>
+
+                <div class="medications-list" id="medicationsList"></div>
+            </div>
+
+            <!-- Pharmacies Tab -->
+            <div id="pharmacies-tab" class="tab-content">
+                <div class="section-header">
+                    <h2>Gestión de Centros de Dispensación</h2>
+                    <button class="btn btn-primary" id="addPharmacyBtn">
+                        Agregar centro
+                    </button>
+                </div>
+
+                <div class="pharmacies-list" id="pharmaciesList"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Medication Modal -->
+    <div id="medicationModal" class="modal-overlay">
+        <div class="modal">
+            <h2 id="medicationModalTitle">Agregar medicamento</h2>
+            
+            <div class="form-group">
+                <label for="medName">Nombre del medicamento</label>
+                <input 
+                    type="text" 
+                    id="medName" 
+                    placeholder="Ej: Paracetamol 500mg"
+                    class="form-input"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="medGenericName">Nombre genérico</label>
+                <input 
+                    type="text" 
+                    id="medGenericName" 
+                    placeholder="Ej: Acetaminofén"
+                    class="form-input"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="medCategory">Categoría</label>
+                <input 
+                    type="text" 
+                    id="medCategory" 
+                    placeholder="Ej: Analgésico"
+                    class="form-input"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="medStock">Stock (unidades)</label>
+                <input 
+                    type="number" 
+                    id="medStock" 
+                    placeholder="0"
+                    min="0"
+                    class="form-input"
+                >
+            </div>
+
+            <div class="form-group">
+                <label>Centros de Dispensación</label>
+                <div class="pharmacies-checkboxes" id="pharmaciesCheckboxes">
+                    <!-- Se llena con JavaScript -->
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelMedicationBtn">Cancelar</button>
+                <button class="btn btn-primary" id="saveMedicationBtn">Agregar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pharmacy Modal -->
+    <div id="pharmacyModal" class="modal-overlay">
+        <div class="modal">
+            <h2 id="pharmacyModalTitle">Agregar centro</h2>
+            
+            <div class="form-group">
+                <label for="pharmName">Nombre del centro</label>
+                <input 
+                    type="text" 
+                    id="pharmName" 
+                    placeholder="Ej: Farmacia Central"
+                    class="form-input"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="pharmAddress">Dirección</label>
+                <input 
+                    type="text" 
+                    id="pharmAddress" 
+                    placeholder="Ej: Av. Principal 123"
+                    class="form-input"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="pharmDistance">Distancia (km)</label>
+                <input 
+                    type="number" 
+                    id="pharmDistance" 
+                    placeholder="0"
+                    min="0"
+                    step="0.1"
+                    class="form-input"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="pharmOpenUntil">Horario de cierre</label>
+                <input 
+                    type="time" 
+                    id="pharmOpenUntil"
+                    class="form-input"
+                >
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input 
+                    type="checkbox" 
+                    id="pharmHasStock"
+                    checked
+                    class="form-checkbox"
+                >
+                <label for="pharmHasStock" class="checkbox-label">Tiene stock disponible</label>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelPharmacyBtn">Cancelar</button>
+                <button class="btn btn-primary" id="savePharmacyBtn">Agregar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container">
+        <div id="toast" class="toast"></div>
+    </div>
+
+    <script type="module" src="panel_administrador.js"></script>
+</body>
+</html>

@@ -1,0 +1,596 @@
+/* CSS Variables */
+:root {
+    --primary: #2563eb;
+    --primary-foreground: #ffffff;
+    --secondary: #f1f5f9;
+    --secondary-foreground: #0f172a;
+    --muted: #f8fafc;
+    --muted-foreground: #64748b;
+    --background: #ffffff;
+    --foreground: #0f172a;
+    --card: #ffffff;
+    --card-foreground: #0f172a;
+    --border: #e2e8f0;
+    --input-background: #ffffff;
+    --destructive: #dc2626;
+    --destructive-foreground: #ffffff;
+    --success: #16a34a;
+    --warning: #ca8a04;
+    --info: #0ea5e9;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, var(--background) 50%, rgba(14, 165, 233, 0.05) 100%);
+    color: var(--foreground);
+    line-height: 1.5;
+}
+
+.app {
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    border-bottom: 1px solid var(--border);
+    background: var(--card);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.logo svg {
+    width: 2rem;
+    height: 2rem;
+    color: var(--primary);
+}
+
+.header-left h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+#user-greeting {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    background: var(--background);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-icon:hover {
+    background: var(--secondary);
+}
+
+.btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.btn-logout:hover {
+    background-color: #e2e8f0;
+}
+
+.btn-logout span {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .btn-logout span {
+        display: inline;
+    }
+}
+
+/* Main */
+.main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 0.5rem;
+    background-color: var(--secondary);
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: transparent;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--muted-foreground);
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.tab:hover {
+    color: var(--foreground);
+}
+
+.tab.active {
+    background-color: var(--background);
+    color: var(--foreground);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.tab svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.tab span {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .tab span {
+        display: inline;
+    }
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Sections */
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+    font-size: 1.5rem;
+    color: var(--foreground);
+}
+
+/* Buttons */
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.875rem;
+    font-weight: 500;
+    max-height: 2.5rem;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background-color: #e2e8f0;
+}
+
+.btn-success {
+    background-color: var(--success);
+    color: white;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+}
+
+.btn-success:hover {
+    background-color: #15803d;
+}
+
+.btn-danger {
+    background-color: var(--destructive);
+    color: var(--destructive-foreground);
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+}
+
+.btn-danger:hover {
+    background-color: #b91c1c;
+}
+
+/* Lists */
+.medications-list,
+.pharmacies-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.medication-item,
+.pharmacy-item {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.medication-item:hover,
+.pharmacy-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.item-content {
+    flex: 1;
+}
+
+.item-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--foreground);
+    margin-bottom: 0.25rem;
+}
+
+.item-subtitle {
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+    margin-bottom: 0.75rem;
+}
+
+.item-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status-btn {
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.8125rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.status-available {
+    background-color: rgba(22, 163, 74, 0.1);
+    color: var(--success);
+}
+
+.status-available:hover {
+    background-color: rgba(22, 163, 74, 0.2);
+}
+
+.status-unavailable {
+    background-color: rgba(220, 38, 38, 0.1);
+    color: var(--destructive);
+}
+
+.status-unavailable:hover {
+    background-color: rgba(220, 38, 38, 0.2);
+}
+
+/* Modals */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    background-color: var(--card);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    max-width: 32rem;
+    width: 90%;
+    max-height: 90vh;
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
+}
+
+.modal h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+    color: var(--foreground);
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--foreground);
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    transition: border-color 0.2s, background-color 0.2s;
+    font-family: inherit;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: var(--muted);
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.form-checkbox {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+.checkbox-label {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--foreground);
+}
+
+.pharmacies-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background-color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.pharmacy-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.pharmacy-checkbox-item input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+.pharmacy-checkbox-item label {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--foreground);
+    cursor: pointer;
+    flex: 1;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.modal-actions .btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.75rem;
+}
+
+/* Toast */
+.toast-container {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 2000;
+}
+
+.toast {
+    max-width: 24rem;
+    padding: 1rem 1.5rem;
+    background-color: var(--success);
+    color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: none;
+    animation: slideIn 0.3s ease-out;
+}
+
+.toast.show {
+    display: block;
+}
+
+.toast.error {
+    background-color: var(--destructive);
+}
+
+.toast.success {
+    background-color: var(--success);
+}
+
+.toast.info {
+    background-color: var(--info);
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.toast-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: white;
+}
+
+.toast-text {
+    flex: 1;
+}
+
+.toast-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.toast-description {
+    font-size: 0.875rem;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Hidden utility */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .main {
+        padding: 1rem;
+    }
+
+    .tabs {
+        flex-direction: column;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .medication-item,
+    .pharmacy-item {
+        flex-direction: column;
+    }
+
+    .item-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .modal {
+        width: 95%;
+    }
+
+    .toast {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+    }
+}
