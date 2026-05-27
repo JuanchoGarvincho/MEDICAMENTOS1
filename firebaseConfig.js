@@ -8,7 +8,8 @@ const firebaseConfig = {
   projectId: "medicamentos1-af4f7",
   storageBucket: "medicamentos1-af4f7.firebasestorage.app",
   messagingSenderId: "478921565495",
-  appId: "1:478921565495:web:0de7e58cf567930dd326b2"
+  appId: "1:478921565495:web:27db70634e599d22d326b2",
+  measurementId: "G-59M38BXD9M"
 };
 
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig);

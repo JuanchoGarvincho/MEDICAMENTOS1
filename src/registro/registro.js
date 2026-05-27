@@ -1,12 +1,6 @@
-// Import Firebase modules
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
-import { getAuth, createUserWithEmailAndPassword, updateProfile, signInWithPopup, GoogleAuthProvider } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
-import firebaseConfig from '../../firebaseConfig.js';
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+s// Import Firebase modules
+import { createUserWithEmailAndPassword, signInWithPopup } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { auth, googleProvider } from '../../firebaseConfig.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('registerForm');
@@ -60,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     googleBtn.addEventListener('click', async function() {
         try {
-            const result = await signInWithPopup(auth, provider);
+            const result = await signInWithPopup(auth, googleProvider);
             const user = result.user;
             alert('Registro con Google completado. Bienvenido ' + user.displayName);
             // Redirect
