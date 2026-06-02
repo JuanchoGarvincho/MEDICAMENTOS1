@@ -1,23 +1,61 @@
  body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom right, rgba(37, 99, 235, 0.05), #ffffff, rgba(241, 245, 249, 0.2));
+    background: linear-gradient(135deg, #0F172A 0%, #1E40AF 50%, #10B981 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.background-decoration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.decoration-circle {
+    position: absolute;
+    filter: blur(50px);
+    animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, -30px); }
 }
 
 .login-wrapper {
     width: 100%;
     max-width: 448px;
+    position: relative;
+    z-index: 1;
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .login-header {
     text-align: center;
     margin-bottom: 32px;
+    color: white;
 }
 
 .logo {
@@ -27,62 +65,80 @@
 }
 
 .logo svg {
-    width: 64px;
-    height: 64px;
-    background: #2563eb;
+    width: 96px;
+    height: 96px;
+    background: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
     border-radius: 50%;
-    padding: 16px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.4);
+    animation: logoPulse 3s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% {
+        box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.4);
+    }
+    50% {
+        box-shadow: 0 20px 60px -5px rgba(37, 99, 235, 0.6);
+    }
 }
 
 .login-header h1 {
     margin: 0 0 8px;
-    font-size: 24px;
-    color: #1f2937;
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
 }
 
 .login-header p {
     margin: 0;
-    color: #64748b;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 15px;
+    font-weight: 400;
 }
 
 .login-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 24px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), inset 0 0 50px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 .user-type-toggle {
     display: flex;
     gap: 8px;
-    background: #f1f5f9;
-    border-radius: 8px;
-    padding: 4px;
-    margin-bottom: 16px;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e9f2fd 100%);
+    border-radius: 10px;
+    padding: 6px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .toggle-btn {
     flex: 1;
-    padding: 8px 16px;
+    padding: 10px 16px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     background: transparent;
     color: #64748b;
     font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
 }
 
 .toggle-btn.active {
-    background: #2563eb;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     color: #ffffff;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .toggle-btn:hover {
     color: #1f2937;
+    transform: translateY(-2px);
 }
 
 .login-form {
@@ -97,35 +153,56 @@
 }
 
 .form-group label {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-size: 14px;
-    color: #334155;
+    font-weight: 500;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+}
+
+.form-group label::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: #2563eb;
+    border-radius: 50%;
+    margin-right: 8px;
 }
 
 .form-group input {
     width: 100%;
-    padding: 12px 16px;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    padding: 14px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
     background: #f8fafc;
     font-size: 14px;
+    font-family: 'Inter', sans-serif;
     outline: none;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
     box-sizing: border-box;
 }
 
 .form-group input:focus {
     border-color: #2563eb;
     background: #ffffff;
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    transform: translateY(-2px);
+}
+
+.form-group input::placeholder {
+    color: #cbd5e1;
 }
 
 .demo-note {
-    background: rgba(37, 99, 235, 0.05);
-    padding: 12px;
-    border-radius: 8px;
-    font-size: 14px;
-    color: #64748b;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #2563eb;
+    font-weight: 500;
+    border-left: 4px solid #2563eb;
 }
 
 .forgot-link {
@@ -133,42 +210,52 @@
     background: none;
     border: none;
     color: #2563eb;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 500;
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
     margin: 0;
     padding: 0;
+    transition: all 0.2s ease;
 }
 
 .forgot-link:hover {
     color: #1d4ed8;
+    transform: translateX(3px);
 }
 
 .login-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
     width: 100%;
-    padding: 12px 16px;
+    padding: 14px 16px;
     border: none;
-    border-radius: 8px;
-    background: #2563eb;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     color: #ffffff;
     font-size: 15px;
+    font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s;
+    box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
 }
 
 .login-btn:hover {
-    background: rgba(37, 99, 235, 0.9);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+    box-shadow: 0 15px 35px -5px rgba(37, 99, 235, 0.5);
+    transform: translateY(-3px);
+}
+
+.login-btn:active {
+    transform: translateY(-1px);
 }
 
 .divider {
     position: relative;
-    margin: 24px 0;
+    margin: 28px 0;
     text-align: center;
 }
 
@@ -179,14 +266,15 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: #e2e8f0;
+    background: linear-gradient(to right, transparent, #e2e8f0, transparent);
 }
 
 .divider span {
     background: #ffffff;
-    padding: 0 8px;
-    font-size: 14px;
-    color: #64748b;
+    padding: 0 12px;
+    font-size: 13px;
+    color: #94a3b8;
+    font-weight: 500;
 }
 
 .google-btn {
@@ -195,23 +283,27 @@
     justify-content: center;
     gap: 12px;
     width: 100%;
-    padding: 12px 16px;
+    padding: 14px 16px;
     border: 2px solid #e2e8f0;
-    border-radius: 8px;
+    border-radius: 10px;
     background: #ffffff;
     color: #334155;
     font-size: 15px;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
 }
 
 .google-btn:hover {
-    background: #f1f5f9;
-    border-color: rgba(37, 99, 235, 0.2);
+    background: linear-gradient(135deg, #f0f9ff 0%, #f0fdf4 100%);
+    border-color: #2563eb;
+    box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.15);
+    transform: translateY(-3px);
 }
 
 .register-link {
-    margin-top: 24px;
+    margin-top: 28px;
     text-align: center;
     font-size: 14px;
     color: #64748b;
@@ -219,9 +311,27 @@
 
 .register-link a {
     color: #2563eb;
-    text-decoration: underline;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.register-link a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #2563eb;
+    transition: width 0.2s ease;
 }
 
 .register-link a:hover {
     color: #1d4ed8;
+}
+
+.register-link a:hover::after {
+    width: 100%;
 }

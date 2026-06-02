@@ -27,21 +27,47 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, var(--background) 50%, rgba(14, 165, 233, 0.05) 100%);
+    font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #0F172A 0%, #1E40AF 50%, #10B981 100%);
     color: var(--foreground);
     line-height: 1.5;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.background-decoration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.decoration-circle {
+    position: absolute;
+    filter: blur(50px);
+    animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, -30px); }
 }
 
 .app {
     min-height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 
 /* Header */
 .header {
-    border-bottom: 1px solid var(--border);
-    background: var(--card);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .header-content {
@@ -63,26 +89,42 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
     border-radius: 50%;
-    background: rgba(37, 99, 235, 0.1);
+    background: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    animation: logoPulse 3s ease-in-out infinite;
 }
 
 .logo svg {
-    width: 2rem;
-    height: 2rem;
-    color: var(--primary);
+    width: 2.2rem;
+    height: 2.2rem;
+    color: #ffffff;
+}
+
+@keyframes logoPulse {
+    0%, 100% {
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    }
+    50% {
+        box-shadow: 0 10px 40px rgba(37, 99, 235, 0.5);
+    }
 }
 
 .header-left h1 {
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #2563eb 0%, #10B981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 #user-greeting {
     font-size: 0.875rem;
     color: var(--muted-foreground);
+    font-weight: 500;
 }
 
 .header-right {
@@ -97,15 +139,19 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0.5rem;
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     background: var(--background);
     border-radius: 0.5rem;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .btn-icon:hover {
-    background: var(--secondary);
+    background: linear-gradient(135deg, #f0f9ff 0%, #f0fdf4 100%);
+    border-color: #2563eb;
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+    transform: translateY(-2px);
 }
 
 .notification-badge {
@@ -129,15 +175,20 @@ body {
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     background: var(--background);
     border-radius: 0.5rem;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
+    font-weight: 500;
 }
 
 .btn-logout:hover {
-    background: var(--secondary);
+    background: linear-gradient(135deg, #fee2e2 0%, #fef2f2 100%);
+    border-color: #dc2626;
+    color: #dc2626;
+    box-shadow: 0 5px 15px rgba(220, 38, 38, 0.2);
+    transform: translateY(-2px);
 }
 
 .btn-logout span {
@@ -255,7 +306,7 @@ body {
 .main {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 2rem 1rem;
 }
 
 /* Tabs */
@@ -263,11 +314,12 @@ body {
     display: flex;
     gap: 0.25rem;
     margin-bottom: 2rem;
-    padding: 0.25rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
 }
 
 .tab {
@@ -277,23 +329,25 @@ body {
     justify-content: center;
     gap: 0.5rem;
     padding: 0.75rem 1rem;
-    border-radius: 0.375rem;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
     background: transparent;
     border: none;
     color: var(--muted-foreground);
+    font-weight: 500;
 }
 
 .tab:hover {
     color: var(--foreground);
-    background: var(--secondary);
+    background: linear-gradient(135deg, #f0f4f8 0%, #e9f2fd 100%);
+    transform: translateY(-2px);
 }
 
 .tab.active {
-    background: var(--primary);
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     color: var(--primary-foreground);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
 }
 
 .tab svg {
@@ -388,22 +442,30 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
 }
 
 .section-header h2 {
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: 700;
+    color: #0f172a;
 }
 
 .results-count {
     font-size: 0.875rem;
-    color: var(--muted-foreground);
+    color: #64748b;
+    font-weight: 500;
 }
 
 .subtitle {
     font-size: 0.875rem;
-    color: var(--muted-foreground);
+    color: #64748b;
     margin-top: 0.25rem;
+    font-weight: 500;
 }
 
 /* Medications List */
@@ -411,23 +473,28 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
 }
 
 .medication-item {
     position: relative;
     padding: 1rem;
-    border: 1px solid var(--border);
-    background: var(--card);
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s;
+    border: 2px solid #e2e8f0;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .medication-item.selected {
     border-color: var(--primary);
     background: rgba(37, 99, 235, 0.05);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 .medication-item.unavailable {
@@ -435,8 +502,9 @@ body {
 }
 
 .medication-item:hover {
-    border-color: rgba(37, 99, 235, 0.5);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: #2563eb;
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+    transform: translateY(-2px);
 }
 
 .medication-content {
@@ -452,11 +520,12 @@ body {
 
 .medication-name {
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 0.25rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    color: #0f172a;
 }
 
 .check-icon {
@@ -467,7 +536,8 @@ body {
 
 .medication-generic {
     font-size: 0.875rem;
-    color: var(--muted-foreground);
+    color: #64748b;
+    font-weight: 500;
 }
 
 .medication-details {
@@ -476,12 +546,17 @@ body {
     align-items: center;
     gap: 1rem;
     font-size: 0.875rem;
+    color: #64748b;
 }
 
 .category-tag {
     padding: 0.25rem 0.75rem;
-    background: var(--secondary);
+    background: linear-gradient(135deg, #f0f9ff 0%, #f0fdf4 100%);
+    border: 1px solid #2563eb;
     border-radius: 9999px;
+    color: #2563eb;
+    font-weight: 500;
+    font-size: 0.75rem;
 }
 
 .stock-info {
@@ -527,6 +602,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
 }
 
 .empty-state {
@@ -536,10 +616,11 @@ body {
     justify-content: center;
     height: 16rem;
     padding: 2rem;
-    border: 1px dashed var(--border);
-    background: var(--card);
-    border-radius: 0.5rem;
+    border: 2px dashed #e2e8f0;
+    background: #ffffff;
+    border-radius: 10px;
     text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .empty-state svg {
@@ -556,32 +637,36 @@ body {
 
 .empty-state .btn-primary {
     padding: 0.75rem 1.5rem;
-    background: var(--primary);
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
     color: var(--primary-foreground);
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.3s ease;
+    font-weight: 600;
 }
 
 .empty-state .btn-primary:hover {
-    background: rgba(37, 99, 235, 0.9);
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+    transform: translateY(-2px);
 }
 
 .pharmacy-item {
     padding: 1rem;
-    border: 1px solid var(--border);
-    background: var(--card);
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s;
+    border: 2px solid #e2e8f0;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .pharmacy-item.available:hover {
-    border-color: rgba(37, 99, 235, 0.5);
+    border-color: #2563eb;
     background: rgba(37, 99, 235, 0.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+    transform: translateY(-2px);
 }
 
 .pharmacy-item.unavailable {
@@ -602,8 +687,9 @@ body {
 
 .pharmacy-name {
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 0.25rem;
+    color: #0f172a;
 }
 
 .pharmacy-details {
@@ -611,19 +697,21 @@ body {
     flex-direction: column;
     gap: 0.25rem;
     font-size: 0.875rem;
-    color: var(--muted-foreground);
+    color: #64748b;
 }
 
 .pharmacy-address {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    color: #64748b;
 }
 
 .pharmacy-hours {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    color: #64748b;
 }
 
 .pharmacy-distance {
@@ -654,6 +742,11 @@ body {
 .reservations-content {
     display: grid;
     gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
 }
 
 @media (min-width: 768px) {
@@ -723,13 +816,14 @@ body {
 
 .reservation-med-details h3 {
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 0.25rem;
+    color: #0f172a;
 }
 
 .reservation-med-details p {
     font-size: 0.875rem;
-    color: var(--muted-foreground);
+    color: #64748b;
 }
 
 .reservation-details {
@@ -780,14 +874,19 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
 }
 
 .history-item {
     padding: 1rem;
-    border: 1px solid var(--border);
-    background: var(--card);
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e2e8f0;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .history-content {
@@ -822,13 +921,14 @@ body {
 
 .history-info h3 {
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 0.25rem;
+    color: #0f172a;
 }
 
 .history-info p {
     font-size: 0.875rem;
-    color: var(--muted-foreground);
+    color: #64748b;
     margin-bottom: 0.5rem;
 }
 
@@ -837,7 +937,7 @@ body {
     align-items: center;
     gap: 0.75rem;
     font-size: 0.875rem;
-    color: var(--muted-foreground);
+    color: #64748b;
 }
 
 .history-status {
